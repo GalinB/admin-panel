@@ -11,6 +11,10 @@ export default function Academy() {
     setIsLibraryOpen(true);
   };
 
+  const closeLibrary = () => {
+    setIsLibraryOpen(false);
+  };
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (libraryRef.current && !libraryRef.current.contains(event.target)) {
@@ -33,7 +37,7 @@ export default function Academy() {
           className="flex flex-col bg-white border border-solid border-gray-300 shadow-md rounded-md p-3 gap-3 md:w-1/3 w-4/5"
         >
           <div className="text-gray-400">
-            <Library />
+            <Library onClose={closeLibrary} />
           </div>
         </div>
       </div>

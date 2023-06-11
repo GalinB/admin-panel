@@ -7,9 +7,14 @@ export default function Account() {
       <div className="flex flex-row gap-4 mb-4">
         <MenuImage src="/Avatar.svg" width={46} height={46} alt="Avatar" />
         <div className="flex flex-col">
-          <div className="flex flex-row">
+          <div className="flex flex-row gap-2">
             <div className="font-bold text-xl text-black">FaZe Banks</div>
-            <div>🚀</div>
+            <MenuImage
+              src="/purplei.svg"
+              width={22}
+              height={22}
+              alt="Purplei"
+            />
           </div>
           <div className="text-gray-400 ">via Richard Bengston</div>
         </div>

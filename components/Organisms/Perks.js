@@ -21,6 +21,10 @@ export default function Perks() {
     setIsLibraryOpen(true);
   };
 
+  const closeLibrary = () => {
+    setIsLibraryOpen(false);
+  };
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (libraryRef.current && !libraryRef.current.contains(event.target)) {
@@ -75,7 +79,7 @@ export default function Perks() {
             ref={libraryRef}
             className="flex flex-col bg-white border border-solid border-gray-300 shadow-md rounded-md p-3 gap-3 md:w-1/3 w-4/5"
           >
-            <div className="text-gray-400">
+            <div className="text-gray-400" onClick={closeLibrary}>
               <Library />
             </div>
           </div>
