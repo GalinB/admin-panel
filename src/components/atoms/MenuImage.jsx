@@ -12,10 +12,11 @@ export default function MenuImage({
   return (
     <Image
       src={src}
+      style={{ width: width, height: height }}
       width={width}
       height={height}
       className={`${
-        hoverEffect && 'transform hover:scale-125 transition duration-200 object-contain'
+        hoverEffect && 'transform hover:scale-125 transition duration-200 object-contain  '
       }`}
       alt={alt}
       onClick={onClick}

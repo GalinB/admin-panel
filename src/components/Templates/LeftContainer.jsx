@@ -1,6 +1,6 @@
-import MenuImage from "@/components/atoms/MenuImage.jsx";
-import Account from "@/components/Organisms/Account";
-import Menu from "@/components/Organisms/Menu";
+import MenuImage from '@/components/atoms/MenuImage.jsx'
+import Account from '@/components/Organisms/Account'
+import Menu from '@/components/Organisms/Menu'
 
 export default function LeftContainer() {
   return (
@@ -11,14 +11,9 @@ export default function LeftContainer() {
       <Account />
       <Menu />
       <div className="flex flex-row gap-5">
-        <MenuImage
-          src="/ellingsentechnologiesiconmark.svg"
-          width={36}
-          height={36}
-          alt="EI"
-        />
+        <MenuImage src="/ellingsentechnologiesiconmark.svg" width={36} height={36} alt="EI" />
         <div>Ellingsen Technologies, © 2022 made with 💜</div>
       </div>
     </div>
-  );
+  )
 }

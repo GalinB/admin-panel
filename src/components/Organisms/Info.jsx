@@ -17,9 +17,9 @@ export default function Info() {
     <div>
       <div className="flex flex-col bg-gray-50 border border-solid border-gray-300 shadow-sm rounded-md p-3 gap-3">
         <div className="flex justify-between items-center">
-          <div className="flex flex-row gap-3">
-            <div className="w-4 h-4 bg-slate-500"></div>
-            <div className="text-gray-400 font-bold mb-2">Info</div>
+          <div className="flex flex-row gap-2">
+            <MenuImage src="/info.svg" width={24} height={24} alt="Button2" hoverEffect />
+            <div className="text-gray-400 font-bold">Info</div>
           </div>
           <MenuImage src="/button1.svg" width={36} height={36} alt="Button2" hoverEffect />
         </div>
