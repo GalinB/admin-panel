@@ -20,10 +20,17 @@ export default function General() {
       <div className="flex justify-center text-black font-bold mb-2 ">
         General
       </div>
-      <div className="flex flex-row gap-3">
-        <Form label="Tier Name" name="name" placeholder="Enter your name" />
+      <div className="flex flex-row justify-between gap-3">
+        <div className="grow">
+          <div className="ml-3 m-1 text-gray-400">Tier name</div>
+          <Form
+            name="name"
+            placeholder="Enter tier name"
+            textColor="text-black"
+          />
+        </div>
         <div className="flex flex-col justify-center">
-          <div>Class</div>
+          <div className="text-gray-400">Class</div>
           <CurrencyDropdown
             width="w-48"
             defaultCurrency="Tier II"
@@ -37,15 +44,15 @@ export default function General() {
           />
         </div>
       </div>
-      <div className="flex flex-row items-center gap-3 justify-between">
-        <div>
-          <div>Price</div>
+      <div className="flex flex-row items-end gap-3 justify-between">
+        <div className="mt-5 grow">
+          <div className="text-gray-400 ml-3 pb-1">Price</div>
           <input
-            className="border border-gray-300 shadow-md rounded-lg p-2"
+            className="border border-gray-300 shadow-md rounded-lg p-2 pl-3 w-full"
             type="text"
             label="Price"
             name="name"
-            placeholder="Enter price"
+            placeholder="Enter price                                              (inc. VAT)"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             style={{
@@ -54,6 +61,7 @@ export default function General() {
             }}
           />
         </div>
+
         <CurrencyDropdown
           width="w-48"
           defaultCurrency="USD"

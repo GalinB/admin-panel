@@ -33,7 +33,7 @@ const CurrencyDropdown = ({
   }, []);
 
   return (
-    <div className="relative inline-block" ref={dropdownRef}>
+    <div className="inline-block" ref={dropdownRef}>
       <div
         className={`cursor-pointer flex items-center space-x-1 border border-gray-200 shadow-sm rounded-lg px-2 py-1 ${width}`}
         onClick={toggleDropdown}
