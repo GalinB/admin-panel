@@ -1,4 +1,4 @@
-import MenuImage from "@/components/atoms/MenuImage";
+import MenuImage from "@/components/atoms/MenuImage.jsx";
 import ReusableDiv from "@/components/atoms/ReusableDiv";
 import Tabs from "@/components/molecules/Tabs";
 

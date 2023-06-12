@@ -1,5 +1,5 @@
-import Academy from "@/components/Organisms/Academy";
-import Info from "@/components/Organisms/Info";
+import Academy from '@/components/Organisms/Academy'
+import Info from '@/components/Organisms/Info'
 
 export default function RightContainer() {
   return (
@@ -7,5 +7,5 @@ export default function RightContainer() {
       <Academy />
       <Info />
     </div>
-  );
+  )
 }

@@ -1,30 +1,39 @@
-import React, { useState, useRef } from "react";
-import MenuImage from "@/components/atoms/MenuImage";
-import Advanced from "@/components/Organisms/Advanced";
-import General from "@/components/Organisms/General";
-import Perks from "@/components/Organisms/Perks";
-import LeftContainer from "./LeftContainer";
-import RightContainer from "./RightContainer";
+import React, { useState, useRef } from 'react'
+import MenuImage from '@/components/atoms/MenuImage'
+import Advanced from '@/components/Organisms/Advanced'
+import General from '@/components/Organisms/General'
+import Perks from '@/components/Organisms/Perks'
+import LeftContainer from './LeftContainer'
+import RightContainer from './RightContainer'
 
 export default function MainContent() {
-  const [showCenteredDiv, setShowCenteredDiv] = useState(false);
-  const [showCenteredDivAcademy, setShowCenteredDivAcademy] = useState(false);
-  const overlayRef = useRef(null);
+  const [showCenteredDiv, setShowCenteredDiv] = useState(false)
+  const [showCenteredDivAcademy, setShowCenteredDivAcademy] = useState(false)
+  const overlayRef = useRef(null)
+
+  const [isChangesSaved, setIsChangesSaved] = useState(false)
+  const handleSaveChanges = () => {
+    setIsChangesSaved(true)
+  }
 
   const handleMenuClick = (event) => {
     if (event.target === overlayRef.current) {
-      setShowCenteredDiv(false);
-      setShowCenteredDivAcademy(false);
+      setShowCenteredDiv(false)
+      setShowCenteredDivAcademy(false)
     }
-  };
+  }
 
   const handleMenuToggle = () => {
-    setShowCenteredDiv(!showCenteredDiv);
-  };
+    setShowCenteredDiv(!showCenteredDiv)
+  }
 
   const handleAcademyClick = () => {
-    setShowCenteredDivAcademy(!showCenteredDivAcademy);
-  };
+    setShowCenteredDivAcademy(!showCenteredDivAcademy)
+  }
+
+  const handleAdvancedButtonClick = () => {
+    setIsChangesSaved(true)
+  }
 
   return (
     <div className="w-[600px] relative">
@@ -63,8 +72,8 @@ export default function MainContent() {
       </div>
 
       <General />
-      <Perks />
-      <Advanced />
+      <Perks isChangesSaved={isChangesSaved} onSaveChanges={handleSaveChanges} />
+      <Advanced onButtonClick={handleAdvancedButtonClick} />
     </div>
-  );
+  )
 }

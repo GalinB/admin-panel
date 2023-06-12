@@ -1,4 +1,4 @@
-import LeftContainer from "@/components/Templates/LeftContainer";
+import LeftContainer from "@/components/Templates/LeftContainer.jsx";
 import MainContent from "@/components/Templates/MainContent";
 import RightContainer from "@/components/Templates/RightContainer";
 

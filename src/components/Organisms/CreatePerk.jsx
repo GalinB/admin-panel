@@ -1,6 +1,6 @@
 import Button from "@/components/atoms/Button";
 import React, { useState, useEffect, useRef } from "react";
-import MenuImage from "../atoms/MenuImage";
+import MenuImage from "../atoms/MenuImage.jsx";
 
 export default function CreatePerk({ onClose }) {
   const [isPermissionsExpanded, setIsPermissionsExpanded] = useState(false);

@@ -1,4 +1,4 @@
-import MenuImage from "@/components/atoms/MenuImage";
+import MenuImage from "@/components/atoms/MenuImage.jsx";
 import Account from "@/components/Organisms/Account";
 import Menu from "@/components/Organisms/Menu";
 

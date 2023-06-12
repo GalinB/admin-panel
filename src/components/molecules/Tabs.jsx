@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import MenuImage from "@/components/atoms/MenuImage";
+import MenuImage from "@/components/atoms/MenuImage.jsx";
 
 export default function Tabs({
   tabname,
   src,
-  chevronSrc,
-  iconWidth,
-  iconHeight,
   children,
+  chevronSrc = "/chevron_right.svg",
+  iconWidth = 9,
+  iconHeight = 9,
 }) {
   const [showDiv, setShowDiv] = useState(false);
 
@@ -47,10 +47,4 @@ Tabs.propTypes = {
   iconWidth: PropTypes.number,
   iconHeight: PropTypes.number,
   children: PropTypes.node,
-};
-
-Tabs.defaultProps = {
-  chevronSrc: "/chevron_right.svg",
-  iconWidth: 9,
-  iconHeight: 9,
 };

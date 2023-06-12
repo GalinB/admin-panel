@@ -1,5 +1,5 @@
 import Button from "@/components/atoms/Button";
-import MenuImage from "@/components/atoms/MenuImage";
+import MenuImage from "@/components/atoms/MenuImage.jsx";
 
 export default function Account() {
   return (
