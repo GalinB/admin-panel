@@ -12,7 +12,7 @@ export default function MenuImage({
   return (
     <Image
       src={src}
-      style={{ width: width, height: height }}
+      style={{ width: 'auto', height: 'auto' }}
       width={width}
       height={height}
       className={`${
