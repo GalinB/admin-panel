@@ -36,7 +36,7 @@ export default function General() {
         <div className="mt-5 grow">
           <div className="text-gray-400 ml-3 pb-1">Price</div>
           <input
-            className="border border-gray-300 shadow-md rounded-lg p-2 pl-3 w-full"
+            className="border border-gray-200 shadow-sm rounded-lg p-2 pl-3 w-full "
             type="text"
             label="Price"
             name="name"
@@ -71,7 +71,12 @@ export default function General() {
           <div className="text-gray-400 font-medium mb-2">Tier II Icon</div>
         </div>
       </div>
-      <Form label="Description (optional)" name="name" placeholder="Enter description" />
+      <Form
+        label="Description (optional)"
+        name="name"
+        placeholder="Enter description"
+        inputh="h-40"
+      />
       <div className="flex flex-row justify-between pl-4 pr-4">
         <div>Characters</div>
         <div className="flex flex-row gap-1 items-center">
