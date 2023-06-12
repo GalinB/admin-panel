@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export default function MenuImage({
   src,
@@ -7,6 +7,7 @@ export default function MenuImage({
   alt,
   hoverEffect,
   onClick,
+  priority = 'false',
 }) {
   return (
     <Image
@@ -14,10 +15,11 @@ export default function MenuImage({
       width={width}
       height={height}
       className={`${
-        hoverEffect && "transform hover:scale-125 transition duration-200"
+        hoverEffect && 'transform hover:scale-125 transition duration-200 object-contain'
       }`}
       alt={alt}
       onClick={onClick}
+      priority={priority}
     />
-  );
+  )
 }
