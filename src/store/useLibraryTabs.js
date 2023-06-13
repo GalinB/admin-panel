@@ -10,13 +10,30 @@ const useLibraryTabs = create((set) => ({
         tab.tabId === tabId ? { ...tab, isActive: !tab.isActive } : tab
       ),
     })),
-  //function setTabOrder(currentTab, NewOrder){
-  //   1.map tabs
-  //   optional - if currentTab === tabId, then tabs.find(match tabId with currentTab)
-  //   2.if tab.order === neworder, then settaborder to current tab.order(tldr swap the order property of the 2 elements in the array)
-  //   3. sort tabs by order property
-  //   4. set state properly after calculating the new tabs array
-  // }
+  setTabOrder: (tabId, newOrder) =>
+    set((prev) => {
+      const tab = prev.tabs.find((t) => t.tabId === tabId)
+      const swapWith = prev.tabs[newOrder]
+
+      if (!tab) {
+        console.warn('tabId is invalid')
+        return prev
+      } else if (!swapWith) {
+        console.warn('newOrder is not valid tab')
+        return prev
+      }
+
+      const currIdx = prev.tabs.indexOf(tab)
+      const orderedTabs = [...prev.tabs]
+
+      orderedTabs[currIdx] = swapWith
+      orderedTabs[newOrder] = tab
+
+      return {
+        ...prev,
+        tabs: orderedTabs,
+      }
+    }),
 }))
 
 export default useLibraryTabs

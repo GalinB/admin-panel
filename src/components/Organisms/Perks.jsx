@@ -4,12 +4,14 @@ import Tabs2 from '@/components/molecules/Tabs2.jsx'
 import CreatePerk from './CreatePerk.jsx'
 import Library from './Library.jsx'
 import useLibraryTabs from '@/store/useLibraryTabs'
+import useDrag from '@/hooks/useDrag.js'
 
 export default function Perks({ isChangesSaved, onSaveChanges }) {
   const [isCreatePerkOpen, setIsCreatePerkOpen] = useState(false)
   const [isLibraryOpen, setIsLibraryOpen] = useState(false)
   const libraryRef = useRef(null)
   const { tabs, toggleTab } = useLibraryTabs()
+  const { parentRef } = useDrag()
 
   const openCreatePerk = () => {
     setIsCreatePerkOpen(true)
@@ -57,17 +59,19 @@ export default function Perks({ isChangesSaved, onSaveChanges }) {
         )
       ) : (
         <>
-          {tabs.map((t) =>
-            t.isActive ? (
-              <Tabs2
-                key={t.tabId}
-                tabname={t.tabName}
-                src1="/drag_indicator.svg"
-                src2="/close.svg"
-                onClick={() => toggleTab(t.tabId)}
-              />
-            ) : null
-          )}
+          <div ref={parentRef} className="flex gap-2 flex-col">
+            {tabs.map((t) =>
+              t.isActive ? (
+                <Tabs2
+                  key={t.tabId}
+                  tabname={t.tabName}
+                  src1="/drag_indicator.svg"
+                  src2="/close.svg"
+                  // onClick={() => toggleTab(t.tabId)}
+                />
+              ) : null
+            )}
+          </div>
 
           <div className="flex display-row gap-2">
             <Button label="Library" onClick={openLibrary} modifier="secondary" />

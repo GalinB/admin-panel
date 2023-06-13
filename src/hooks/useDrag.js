@@ -1,56 +1,108 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 const useDrag = () => {
-  const parentRef = useRef(null) // Step 1: useRef on parent which has all tab elements
-  const [isMouseDown, setIsMouseDown] = useState(false) // Step 2: create state (boolean) for mousedown on child element
+  const parentRef = useRef(null)
 
   useEffect(() => {
     const parentElement = parentRef.current
 
-    // Step 3: Attach mousedown event handler to children on mount of parent element
-    const handleMouseDown = () => {
-      setIsMouseDown(true)
+    if (!parentElement) return
+
+    const setDraggedElPosition = (el, event) => {
+      el.style = `position: fixed; top: ${event.clientY - document.draggingElOffset.y}px; left: ${
+        event.clientX - document.draggingElOffset.x
+      }px; width: ${
+        document.draggingEl.getBoundingClientRect().width
+      }px; z-index: 100; pointer-events: none;`
+    }
+    const handleMouseDown = (e) => {
+      document.isMouseDown = true
+
+      const el = e.currentTarget
+
+      el.style.opacity = '0'
+
+      document.draggingEl = el
+      document.draggingElOffset = { x: e.offsetX, y: e.offsetY }
+
+      const tmp = el.cloneNode(true)
+      setDraggedElPosition(tmp, e)
+      tmp.addEventListener('mouseup', handleMouseUp)
+      parentElement.append(tmp)
+
+      document.draggingElTmp = tmp
     }
 
-    if (parentElement) {
-      const children = parentElement.children
-      Array.from(children).forEach((child) => {
-        child.addEventListener('mousedown', handleMouseDown)
-      })
+    const handleMouseUp = () => {
+      document.isMouseDown = false
+
+      if (document.draggingEl) {
+        document.draggingEl.style.opacity = '1'
+        document.draggingEl = null
+      }
+
+      if (document.draggingElTmp) document.draggingElTmp.remove()
+      if (document.draggingElOffset) document.draggingElOffset = null
     }
 
-    // Clean up event listeners
+    const handleMouseMove = (event) => {
+      if (
+        !document.isMouseDown ||
+        !document.draggingEl ||
+        !document.draggingElTmp ||
+        !document.draggingElOffset
+      )
+        return
+
+      const tmp = document.draggingElTmp
+      setDraggedElPosition(tmp, event)
+
+      if (document.draggedOver) {
+        const prevOrder = document.draggingEl.style.order
+        document.draggingEl.style.order = document.draggedOver.style.order
+        document.draggedOver.style.order = prevOrder
+      }
+    }
+
+    const handleMouseOver = (event) => {
+      if (
+        !document.isMouseDown ||
+        !document.draggingEl ||
+        !document.draggingElTmp ||
+        !document.draggingElOffset
+      )
+        return
+
+      document.draggedOver = event.currentTarget
+    }
+
+    parentElement.addEventListener('mousemove', handleMouseMove)
+    parentElement.addEventListener('mouseleave', handleMouseUp)
+
+    const children = parentElement.children
+
+    Array.from(children).forEach((child, idx) => {
+      child.addEventListener('mousedown', handleMouseDown)
+      child.addEventListener('mouseup', handleMouseUp)
+      child.addEventListener('mouseover', handleMouseOver)
+      child.style = `user-select: none; order: ${idx}`
+    })
+
     return () => {
       if (parentElement) {
+        parentElement.removeEventListener('mousemove', handleMouseMove)
+        parentElement.removeEventListener('mouseleave', handleMouseUp)
+
         Array.from(children).forEach((child) => {
           child.removeEventListener('mousedown', handleMouseDown)
+          child.removeEventListener('mouseup', handleMouseUp)
+          child.removeEventListener('mouseover', handleMouseOver)
         })
       }
     }
-  }, []) // Empty dependency array to run the effect only once on mount
+  }, [])
 
-  // Step 4: Add event handler on parent for mousemove
-  const handleMouseMove = (event) => {
-    if (isMouseDown) {
-      // Perform drag logic here
-      directionRef.current = getDirection(event) // Step 5: Helper function to determine direction
-    }
-  }
-
-  // Step 6: Add onmouseup event handler to child elements
-  const handleMouseUp = () => {
-    //based on directionref.current change the elements css back to original
-
-    setIsMouseDown(false)
-  }
-
-  // Step 7: Add useEffect to listen to changes in isMouseDown
-  useEffect(() => {
-    if (!isMouseDown) {
-    }
-  }, [isMouseDown])
-
-  return { parentRef, handleMouseMove, handleMouseUp }
+  return { parentRef }
 }
 
 export default useDrag
