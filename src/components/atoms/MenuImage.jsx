@@ -7,6 +7,7 @@ export default function MenuImage({
   alt,
   hoverEffect,
   onClick,
+  onClickCapture,
   priority = 'false',
 }) {
   return (
@@ -20,6 +21,7 @@ export default function MenuImage({
       }`}
       alt={alt}
       onClick={onClick}
+      onClickCapture={onClickCapture}
       priority={priority}
     />
   )

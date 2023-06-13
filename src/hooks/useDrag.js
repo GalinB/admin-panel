@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-const useDrag = () => {
+const useDrag = ({ dependency } = { dependency: false }) => {
   const parentRef = useRef(null)
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const useDrag = () => {
         })
       }
     }
-  }, [])
+  }, [dependency])
 
   return { parentRef }
 }

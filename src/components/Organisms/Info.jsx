@@ -25,11 +25,11 @@ export default function Info() {
         </div>
         <div className="text-gray-400">You can have up to 3 tiers of subscriptions</div>
         <div className="flex justify-center">
-          <Button label="Close" onClick={handleCloseClick} />
+          <Button modifier="secondary" label="Close" onClick={handleCloseClick} />
         </div>
       </div>
       <div className="flex items-center justify-center mt-3 md:mt-[400px]">
-        <Button label="Edit Panel" modifier="secondary" />
+        <Button label="Edit Panel" modifier="primary" />
       </div>
     </div>
   )

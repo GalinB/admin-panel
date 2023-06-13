@@ -1,7 +1,8 @@
 import Button from '@/components/atoms/Button'
 import CurrencyDropdown from '@/components/atoms/CurrencyDropdown'
 import MenuImage from '@/components/atoms/MenuImage.jsx'
-import Tabs2 from '@/components/molecules/Tabs2'
+import TabTemplate from '../Templates/Tab.template'
+import Toggle from '../atoms/Toggle'
 
 export default function Advanced({ onButtonClick }) {
   return (
@@ -20,28 +21,21 @@ export default function Advanced({ onButtonClick }) {
           </div>
         </div>
         <div className="flex flex-col mt-3 gap-2">
-          <Tabs2
-            tabname="Limited Subscriptions"
-            src2="/btn_active.svg"
-            src3="/btn_inactive.svg"
-            size={50}
-          />
-          <Tabs2
-            tabname="100"
-            subscribed={`24 subs`}
-            textcolor="text-black font-bold mb-3"
-            size={50}
+          <TabTemplate label="Limited Subscriptions" rightSide={<Toggle />} size={50} />
+          <TabTemplate
+            label="100"
+            rightSide={<div className="text-gray-400">24 subs</div>}
+            labelClassName="text-black font-bold mb-3"
           />
           <div className="text-gray-400 ml-3">
             This option is to limit maximum amount of subscribers for the selected tier
           </div>
         </div>
         <div className="flex flex-col mt-3 gap-1">
-          <Tabs2
-            tabname="Shipping Addresses"
-            src2="/btn_inactive.svg"
-            src3="/btn_active.svg"
-            size={50}
+          <TabTemplate
+            label="Shipping Addresses"
+            rightSide={<Toggle size={50} />}
+            labelClassName="text-black font-bold mb-3"
           />
           <div className="text-gray-400 ml-3">
             If the option is enabled the subscribers will be asked to input their shipping addresses
@@ -58,8 +52,8 @@ export default function Advanced({ onButtonClick }) {
               </div>
             </div>
             <div className="flex justify-between gap-4">
-              <Button label="Unpublish Tier" />
-              <Button label="Delete Tier" textcolor="text-red-500" />
+              <Button modifier="secondary" label="Unpublish Tier" />
+              <Button modifier="secondary" label="Delete Tier" className="text-red-500" />
             </div>
           </div>
           <div className="text-gray-400 ml-3 mt-1">
@@ -67,7 +61,7 @@ export default function Advanced({ onButtonClick }) {
           </div>
         </div>
       </div>
-      <Button label="Save changes" modifier="third" onClick={onButtonClick} />
+      <Button label="Save changes" modifier="tertiary" onClick={onButtonClick} />
     </div>
   )
 }

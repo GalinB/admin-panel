@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Button from '@/components/atoms/Button.jsx'
-import Tabs2 from '@/components/molecules/Tabs2.jsx'
 import CreatePerk from './CreatePerk.jsx'
 import Library from './Library.jsx'
 import useLibraryTabs from '@/store/useLibraryTabs'
 import useDrag from '@/hooks/useDrag.js'
+import TabTemplate from '../Templates/Tab.template.jsx'
+import MenuImage from '../atoms/MenuImage.jsx'
 
 export default function Perks({ isChangesSaved, onSaveChanges }) {
   const [isCreatePerkOpen, setIsCreatePerkOpen] = useState(false)
   const [isLibraryOpen, setIsLibraryOpen] = useState(false)
   const libraryRef = useRef(null)
   const { tabs, toggleTab } = useLibraryTabs()
-  const { parentRef } = useDrag()
+  const { parentRef } = useDrag({ dependency: tabs })
 
   const openCreatePerk = () => {
     setIsCreatePerkOpen(true)
@@ -62,20 +63,29 @@ export default function Perks({ isChangesSaved, onSaveChanges }) {
           <div ref={parentRef} className="flex gap-2 flex-col">
             {tabs.map((t) =>
               t.isActive ? (
-                <Tabs2
+                <TabTemplate
                   key={t.tabId}
-                  tabname={t.tabName}
-                  src1="/drag_indicator.svg"
-                  src2="/close.svg"
-                  // onClick={() => toggleTab(t.tabId)}
+                  label={t.tabName}
+                  leftSide={
+                    <MenuImage src="/drag_indicator.svg" width={10} height={10} alt="Menu Icon" />
+                  }
+                  rightSide={
+                    <MenuImage
+                      src="/close.svg"
+                      width={16}
+                      height={16}
+                      alt="Menu Icon"
+                      onClick={() => toggleTab(t.tabId)}
+                    />
+                  }
                 />
               ) : null
             )}
           </div>
 
           <div className="flex display-row gap-2">
-            <Button label="Library" onClick={openLibrary} modifier="secondary" />
-            <Button label="Create Perk" onClick={openCreatePerk} />
+            <Button modifier="primary" label="Library" onClick={openLibrary} />
+            <Button modifier="secondary" label="Create Perk" onClick={openCreatePerk} />
           </div>
 
           {isCreatePerkOpen && (

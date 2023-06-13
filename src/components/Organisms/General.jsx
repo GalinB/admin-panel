@@ -1,7 +1,7 @@
 import CurrencyDropdown from '@/components/atoms/CurrencyDropdown'
 import MenuImage from '@/components/atoms/MenuImage.jsx'
-import Form from '@/components/molecules/Form'
 import React, { useState } from 'react'
+import FormInput from '@/components/atoms/FormInput'
 
 export default function General() {
   const [price, setPrice] = useState('')
@@ -21,7 +21,7 @@ export default function General() {
       <div className="flex flex-row justify-between gap-3">
         <div className="grow">
           <div className="ml-3 m-1 text-gray-400">Tier name</div>
-          <Form name="name" placeholder="Enter tier name" textcolor="text-black" />
+          <FormInput name="name" placeholder="Enter tier name" textcolor="text-black" />
         </div>
         <div className="flex flex-col justify-center">
           <div className="text-gray-400">Class</div>
@@ -71,7 +71,8 @@ export default function General() {
           <div className="text-gray-400 font-medium mb-2">Tier II Icon</div>
         </div>
       </div>
-      <Form
+      <FormInput
+        type="textarea"
         label="Description (optional)"
         name="name"
         placeholder="Enter description"

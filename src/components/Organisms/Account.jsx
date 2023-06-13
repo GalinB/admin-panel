@@ -15,7 +15,7 @@ export default function Account() {
         </div>
       </div>
       <div className="flex justify-center"></div>
-      <Button label="Switch" />
+      <Button modifier="secondary" label="Switch" />
     </div>
   )
 }

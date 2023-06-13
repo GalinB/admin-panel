@@ -1,33 +1,33 @@
-import Button from "@/components/atoms/Button";
-import React, { useState, useEffect, useRef } from "react";
-import MenuImage from "../atoms/MenuImage.jsx";
+import Button from '@/components/atoms/Button'
+import React, { useState, useEffect, useRef } from 'react'
+import MenuImage from '../atoms/MenuImage.jsx'
 
 export default function CreatePerk({ onClose }) {
-  const [isPermissionsExpanded, setIsPermissionsExpanded] = useState(false);
-  const ref = useRef();
+  const [isPermissionsExpanded, setIsPermissionsExpanded] = useState(false)
+  const ref = useRef()
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        onClose();
+        onClose()
       }
-    };
+    }
 
-    document.body.addEventListener("click", handleOutsideClick);
+    document.body.addEventListener('click', handleOutsideClick)
 
     return () => {
-      document.body.removeEventListener("click", handleOutsideClick);
-    };
-  }, [onClose]);
+      document.body.removeEventListener('click', handleOutsideClick)
+    }
+  }, [onClose])
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
-    onClose();
-  };
+    event.preventDefault()
+    onClose()
+  }
 
   const togglePermissions = () => {
-    setIsPermissionsExpanded(!isPermissionsExpanded);
-  };
+    setIsPermissionsExpanded(!isPermissionsExpanded)
+  }
 
   return (
     <div
@@ -36,21 +36,15 @@ export default function CreatePerk({ onClose }) {
     >
       <div className="flex flex-row justify-center items-center gap-3">
         <div className="flex-grow flex justify-center">
-          <MenuImage
-            src="/creating_perk.svg"
-            width={200}
-            height={200}
-            alt="Menu Icon"
-          />
+          <MenuImage src="/creating_perk.svg" width={200} height={200} alt="Menu Icon" />
         </div>
-        <button onClick={onClose}>
-          <MenuImage
-            src="/close_circle.svg"
-            width={50}
-            height={50}
-            alt="Menu Icon"
-          />
-        </button>
+        <MenuImage
+          src="/close_circle.svg"
+          width={50}
+          height={50}
+          alt="Menu Icon"
+          onClick={onClose}
+        />
       </div>
       <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col">
@@ -62,18 +56,13 @@ export default function CreatePerk({ onClose }) {
             placeholder="Enter perk name"
           />
         </div>
-        <div className="text-gray-400 mt-3 pl-3 pb-1">
-          Permissions (allow subscriber to)
-        </div>
+        <div className="text-gray-400 mt-3 pl-3 pb-1">Permissions (allow subscriber to)</div>
         <div className="bg-white bg-opacity-6 border border-opacity-6 shadow-sm rounded-lg">
-          <div
-            className="flex items-center cursor-pointer"
-            onClick={togglePermissions}
-          >
+          <div className="flex items-center cursor-pointer" onClick={togglePermissions}>
             <span className="mr-2 text-gray-400 font-medium p-3">None</span>
             <svg
               className={`w-4 h-4 transition-transform ${
-                isPermissionsExpanded ? "transform rotate-90" : ""
+                isPermissionsExpanded ? 'transform rotate-90' : ''
               }`}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -103,13 +92,13 @@ export default function CreatePerk({ onClose }) {
             </div>
           )}
         </div>
-        <button
+        <Button
           type="submit"
-          className="flex items-center justify-center w-full mt-60"
-        >
-          <Button label="Create Perk" />
-        </button>
+          label="Create Perk"
+          className="m-auto w-[100%] mt-40"
+          modifier="tertiary"
+        />
       </form>
     </div>
-  );
+  )
 }

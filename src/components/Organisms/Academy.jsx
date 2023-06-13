@@ -9,11 +9,11 @@ export default function Academy() {
   const libraryRef = useRef(null)
   const { tabs, toggleTab } = useLibraryTabs()
 
-  const handleLibraryButtonClick = () => {
+  const handleLibraryButtonClick = (e) => {
     setIsLibraryOpen(true)
   }
 
-  const closeLibrary = () => {
+  const closeLibrary = (e) => {
     setIsLibraryOpen(false)
   }
 
@@ -64,7 +64,7 @@ export default function Academy() {
         <div>● Download attached files</div>
       </div>
       <div className="flex justify-center">
-        <Button label="Library" onClick={handleLibraryButtonClick} />
+        <Button modifier="secondary" label="Library" onClick={handleLibraryButtonClick} />
       </div>
     </div>
   )
