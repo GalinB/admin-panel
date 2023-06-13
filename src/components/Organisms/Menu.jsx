@@ -1,6 +1,6 @@
-import MenuImage from "@/components/atoms/MenuImage.jsx";
-import ReusableDiv from "@/components/atoms/ReusableDiv";
-import Tabs from "@/components/molecules/Tabs";
+import MenuImage from '@/components/atoms/MenuImage.jsx'
+import ReusableDiv from '@/components/atoms/ReusableDiv'
+import Tabs from '@/components/molecules/Tabs'
 
 export default function Menu() {
   return (
@@ -33,7 +33,7 @@ export default function Menu() {
         iconHeight={14}
       >
         <div className="flex flex-row gap-5 ml-5">
-          <MenuImage src="/bar.svg" width={5} height={12} alt="Up" />
+          <div className="w-5"> </div>
           <div className="text-gray-400 font-medium flex flex-col gap-2">
             <ReusableDiv text="Example 1" />
             <ReusableDiv text="Example 2" />
@@ -49,7 +49,7 @@ export default function Menu() {
         iconHeight={14}
       >
         <div className="flex flex-row gap-5 ml-5">
-          <MenuImage src="/bar.svg" width={5} height={12} alt="Up" />
+          <div className="w-5"> </div>
           <div className="text-gray-400 font-medium flex flex-col gap-2">
             <ReusableDiv text="Example 3" />
             <ReusableDiv text="Example 4" />
@@ -57,5 +57,5 @@ export default function Menu() {
         </div>
       </Tabs>
     </div>
-  );
+  )
 }
