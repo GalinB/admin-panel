@@ -10,7 +10,6 @@ const useLibraryTabs = create((set) => ({
         tab.tabId === tabId ? { ...tab, isActive: !tab.isActive } : tab
       ),
     })),
-  // @TODO update the order of tabs in data if we want to sync with some endpoint
   setTabOrder: (tabId, newOrder) =>
     set((prev) => {
       const tab = prev.tabs.find((t) => t.tabId === tabId)
